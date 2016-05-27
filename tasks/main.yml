@@ -1,2 +1,14 @@
 ---
-# tasks file for jmcvetta.cfssl-trust
+
+- name: Ensure certificate folder exists
+  file:
+    path: /etc/pki/tls/certs
+    state: directory
+
+
+- name: Ensure Logz.io intermediate SSL certificate is present
+  get_url:
+    url: "https://raw.githubusercontent.com/cloudflare/cfssl_trust/master/intermediate_ca/COMODORSADomainValidationSecureServerCA.crt"
+    dest: /etc/pki/tls/certs/COMODORSADomainValidationSecureServerCA.crt
+
+
